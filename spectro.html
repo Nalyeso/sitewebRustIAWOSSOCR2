@@ -1,0 +1,43 @@
+<!DOCTYPE HTML>
+<html>
+<head>
+    <title>Spectrogramme</title>
+    <meta charset="utf-8" />
+    <link rel="stylesheet" href="assets/css/main.css" />
+</head>
+
+<body>
+    <div id="page-wrapper">
+
+        <section id="main" class="container">
+            <header>
+                <h2>Générateur de spectrogramme</h2>
+                <p>Glissez un fichier audio WAV pour générer son spectrogramme.</p>
+            </header>
+
+            <div class="box">
+                <div id="drop-zone">
+                    <p>Déposez votre fichier WAV ici</p>
+                    <p>ou</p>
+                    <input type="file" id="file-input" accept=".wav,audio/wav" />
+                </div>
+
+                <p id="file-name"></p>
+
+                <button id="generate-btn" disabled>
+                    Générer le spectrogramme
+                </button>
+
+                <hr>
+
+                <h3>Résultat :</h3>
+                <p id="status"></p>
+                <img id="spectrogram-img" style="display:none; max-width:100%;" />
+            </div>
+        </section>
+
+    </div>
+
+    <script src="assets/js/spectrogramme.js"></script>
+</body>
+</html>
