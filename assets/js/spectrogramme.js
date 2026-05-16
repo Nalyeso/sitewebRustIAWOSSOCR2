@@ -26,13 +26,25 @@ generateBtn.addEventListener("click", async () => {
         if (!response.ok) {
             throw new Error("Erreur lors de la génération.");
         }
+const contentType = response.headers.get("content-type");
+console.log("Content-Type reçu :", contentType);
 
-        const blob = await response.blob();
-        const imageUrl = URL.createObjectURL(blob);
+const blob = await response.blob();
+console.log("Blob reçu :", blob);
 
-        spectrogramImg.src = imageUrl;
-        spectrogramImg.style.display = "block";
-        statusText.textContent = "Spectrogramme généré !";
+if (!contentType || !contentType.includes("image")) {
+    const text = await blob.text();
+    console.log("Réponse texte du serveur :", text);
+    statusText.textContent = "Erreur : le serveur n'a pas renvoyé une image.";
+    return;
+}
+
+const imageUrl = URL.createObjectURL(blob);
+
+spectrogramImg.src = imageUrl;
+spectrogramImg.style.display = "block";
+statusText.textContent = "Spectrogramme généré !";
+
     } catch (error) {
         console.error(error);
         statusText.textContent = "Erreur : impossible de générer le spectrogramme.";
