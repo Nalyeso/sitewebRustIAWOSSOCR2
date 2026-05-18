@@ -4,6 +4,57 @@
     <title>Spectrogramme</title>
     <meta charset="utf-8" />
     <link rel="stylesheet" href="assets/css/main.css" />
+
+    <style>
+        .spectro-content {
+            display: flex;
+            gap: 40px;
+            align-items: flex-start;
+        }
+
+        .spectro-left {
+            flex: 1;
+        }
+
+        .spectro-right {
+            flex: 1;
+            padding: 20px;
+            border-left: 1px solid rgba(255, 255, 255, 0.2);
+        }
+
+        .spectro-right h3 {
+            margin-top: 0;
+        }
+
+        .spectro-right ol {
+            padding-left: 20px;
+            margin-bottom: 0;
+        }
+
+        .spectro-right li {
+            margin-bottom: 12px;
+            line-height: 1.5;
+        }
+
+        .spectro-right code {
+            background: rgba(255, 255, 255, 0.15);
+            padding: 2px 6px;
+            border-radius: 4px;
+        }
+
+        @media screen and (max-width: 736px) {
+            .spectro-content {
+                flex-direction: column;
+            }
+
+            .spectro-right {
+                border-left: none;
+                border-top: 1px solid rgba(255, 255, 255, 0.2);
+                padding-left: 0;
+                padding-top: 25px;
+            }
+        }
+    </style>
 </head>
 
 <body>
@@ -16,25 +67,62 @@
             </header>
 
             <div class="box">
-                <a href="projet_rust.zip" download class="button">
-                    Télécharger le projet
-                </a>
-                <br><br>
-                <div id="drop-zone">
-                    <input type="file" id="file-input" accept=".wav,audio/wav" />
+
+                <div class="spectro-content">
+
+                    <!-- Partie gauche : boutons et résultat -->
+                    <div class="spectro-left">
+
+                        <a href="projet_rust.zip" download class="button">
+                            Télécharger le projet
+                        </a>
+
+                        <br><br>
+
+                        <div id="drop-zone">
+                            <input type="file" id="file-input" accept=".wav,audio/wav" />
+                        </div>
+
+                        <p id="file-name"></p>
+
+                        <button id="generate-btn">
+                            Générer le spectrogramme
+                        </button>
+
+                        <hr>
+
+                        <h3>Résultat :</h3>
+                        <p id="status"></p>
+                        <img id="spectrogram-img" style="display:none; max-width:100%;" />
+
+                    </div>
+
+                    <!-- Partie droite : consignes -->
+                    <div class="spectro-right">
+                        <h3>Consignes</h3>
+
+                        <ol>
+                            <li>
+                                Téléchargez le projet.
+                            </li>
+
+                            <li>
+                                Dans la console, au niveau du dossier <code>img</code>,
+                                faites <code>cargo run</code> et attendez que le serveur local se lance.
+                            </li>
+
+                            <li>
+                                Mettez votre fichier <code>.wav</code> sur le site.
+                            </li>
+
+                            <li>
+                                N'oubliez pas de faire <code>cargo clean</code> à la fin.
+                            </li>
+                        </ol>
+                    </div>
+
                 </div>
 
-                <p id="file-name"></p>
-
-                <button id="generate-btn">
-                    Générer le spectrogramme
-                </button>
-
-                <hr>
-
-                <h3>Résultat :</h3>
-                <p id="status"></p>
-                <img id="spectrogram-img" style="display:none; max-width:100%;" />
             </div>
         </section>
 
@@ -43,3 +131,4 @@
     <script src="assets/js/spectrogramme.js"></script>
 </body>
 </html>
+
